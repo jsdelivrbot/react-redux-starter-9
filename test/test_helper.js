@@ -1,4 +1,4 @@
-import jquery from 'jquery';
+import _$ from 'jquery';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactTestUtils from 'react-dom/test-utils';
@@ -9,10 +9,22 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import reducers from '../src/reducers';
 
-global.document = jsdom.jsdom('<!doctype html><html><body></body></html>');
-global.window = global.document.defaultView;
+const {JSDOM} = jsdom;
+
+const dom = new JSDOM('<!doctype html><html><body></body></html>');
+const win = dom.window;
+const doc = win.document;
+
+global.document = doc;
+global.window = win;
 global.navigator = global.window.navigator;
-const $ = jquery(window);
+
+// Old approach. Doesn't work with new version of jsdom
+// global.document = jsdom.jsdom('<!doctype html><html><body></body></html>');
+// global.window = global.document.defaultView;
+// global.navigator = global.window.navigator;
+
+const $ = _$(window);
 
 chaiJquery(chai, chai.util, $);
 
