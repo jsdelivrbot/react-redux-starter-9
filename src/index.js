@@ -4,6 +4,7 @@ import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import reducers from './reducers'
 
+import requireAuth from './components/require_authentication';
 import App from './components/app';
 import Resources from './components/resources'
 
@@ -14,11 +15,10 @@ import createBrowserHistory from 'history/createBrowserHistory';
 
 
 ReactDOM.render(
-
   <Provider store={store}>
     <Router history={createBrowserHistory()}>
       <App>
-        <Route path="/resources" component={Resources} />
+        <Route path="/resources" component={requireAuth(Resources)} />
       </App>
     </Router>
   </Provider>,
