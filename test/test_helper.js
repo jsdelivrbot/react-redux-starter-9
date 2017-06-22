@@ -8,6 +8,8 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import reducers from '../src/reducers';
 import chaiJquery from 'chai-jquery';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
 
 // Set up testing environemnt to run like a browser in the command line
 
