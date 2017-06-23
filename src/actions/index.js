@@ -1,4 +1,5 @@
-import { CHANGE_AUTH, SAVE_COMMENT } from './types';
+import axios from 'axios';
+import { CHANGE_AUTH, SAVE_COMMENT, FETCH_USERS } from './types';
 
 function authenticate(isLoggedIn) {
   return {
@@ -14,7 +15,18 @@ function saveComment(comment) {
   }
 }
 
+function fetchUsers() {
+  const request = axios
+    .get('https://jsonplaceholder.typicode.com/users');
+
+  return {
+    type: FETCH_USERS,
+    payload: request
+  }
+}
+
 export {
   authenticate,
-  saveComment
+  saveComment,
+  fetchUsers
 }
